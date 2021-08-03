@@ -1,0 +1,61 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-camel-k-operator
+  annotations:
+    policy.open-cluster-management.io/standards: Outils d'intégrations
+    policy.open-cluster-management.io/categories: Operators
+    policy.open-cluster-management.io/controls: Standards applicatif
+spec:
+  remediationAction: enforce
+  disabled: false
+  policy-templates:
+
+  - objectDefinition:
+      # Create integrations namespace
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: cp-integrations-namespace
+      spec:
+        remediationAction: inform
+        severity: high
+        object-templates:
+          - complianceType: musthave
+            objectDefinition:
+            
+              apiVersion: project.openshift.io/v1
+              kind: Project
+              metadata:
+                name: integrations
+
+  - objectDefinition:
+      # Install Camel-K operator
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: cp-camel-k-operator
+      spec:
+        remediationAction: inform
+        severity: high
+        namespaceSelector:
+          include: 
+          - "integrations"
+        object-templates:
+
+          - complianceType: musthave
+            objectDefinition:
+
+              apiVersion: operators.coreos.com/v1alpha1
+              kind: Subscription
+              metadata:
+                labels:
+                  operators.coreos.com/red-hat-camel-k.openshift-operators: ""
+                name: red-hat-camel-k
+              spec:
+                channel: techpreview
+                installPlanApproval: Automatic
+                name: red-hat-camel-k
+                source: redhat-operators
+                sourceNamespace: openshift-marketplace
+                startingCSV: red-hat-camel-k-operator.v1.3.3
