@@ -8,6 +8,6 @@ metadata:
   name: deploy-integration-subscription
   namespace: acm-channels
 spec:
-  channel: acm-poc-channel/acm-poc-channel
+  channel: acm-channels/deploy-integration-channel
   placement:
     local: true

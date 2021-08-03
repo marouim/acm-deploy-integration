@@ -54,7 +54,7 @@ spec:
                 name: red-hat-camel-k
               spec:
                 channel: techpreview
-                installPlanApproval: Automatic
+                installPlanApproval: Manual
                 name: red-hat-camel-k
                 source: redhat-operators
                 sourceNamespace: openshift-marketplace
