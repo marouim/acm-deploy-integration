@@ -81,7 +81,7 @@ spec:
                 name: integrations
                 namespace: integrations-dev
               spec:
-                targetNamespaces:
+                namespaces:
                 - integrations-dev
 
           - complianceType: musthave
@@ -95,7 +95,7 @@ spec:
                 name: integrations
                 namespace: integrations-prod
               spec:
-                targetNamespaces:
+                namespaces:
                 - integrations-prod
 
           - complianceType: musthave
@@ -109,5 +109,5 @@ spec:
                 name: integrations
                 namespace: integrations-preprod
               spec:
-                targetNamespaces:
+                namespaces:
                 - integrations-preprod
