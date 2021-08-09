@@ -24,3 +24,4 @@ Appliquer ensuite le label integrations=yes sur le ou les clusters souhaités.
 #### 3 - Déployer une ressource Springboot Camel via ACM
 
 
+ 
