@@ -2,7 +2,6 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: integrations-operators
-  namespace: acm-policies
   annotations:
     policy.open-cluster-management.io/standards: Outils d'intégrations
     policy.open-cluster-management.io/categories: Operators
