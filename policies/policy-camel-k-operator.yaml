@@ -1,7 +1,7 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
-  name: camel-k-operator
+  name: integrations-operators
   annotations:
     policy.open-cluster-management.io/standards: Outils d'intégrations
     policy.open-cluster-management.io/categories: Operators
@@ -10,24 +10,6 @@ spec:
   remediationAction: enforce
   disabled: false
   policy-templates:
-
-  - objectDefinition:
-      # Create integrations namespace
-      apiVersion: policy.open-cluster-management.io/v1
-      kind: ConfigurationPolicy
-      metadata:
-        name: cp-integrations-namespace
-      spec:
-        remediationAction: inform
-        severity: high
-        object-templates:
-          - complianceType: musthave
-            objectDefinition:
-            
-              apiVersion: project.openshift.io/v1
-              kind: Project
-              metadata:
-                name: integrations
 
   - objectDefinition:
       # Install Camel-K operator
@@ -40,7 +22,7 @@ spec:
         severity: high
         namespaceSelector:
           include: 
-          - "integrations"
+          - "integrations-*"
         object-templates:
 
           - complianceType: musthave

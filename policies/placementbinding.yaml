@@ -9,7 +9,10 @@ placementRef:
   apiGroup: apps.open-cluster-management.io
 
 subjects:
-- name: policy-camel-k-operator
+- name: integrations-projects
   kind: Policy
   apiGroup: policy.open-cluster-management.io
 
+- name: integrations-operators
+  kind: Policy
+  apiGroup: policy.open-cluster-management.io
