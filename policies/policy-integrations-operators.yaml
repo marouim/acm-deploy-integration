@@ -18,6 +18,9 @@ spec:
       metadata:
         name: integrations-operators
       spec:
+        namespaceSelector:
+          include: 
+          - "integrations-*"
         remediationAction: inform
         severity: high
         object-templates:
@@ -31,7 +34,6 @@ spec:
                 labels:
                   operators.coreos.com/camel-k.openshift-operators: ""
                 name: camel-k
-                namespace: openshift-operators
               spec:
                 channel: stable-1.5
                 installPlanApproval: Manual
@@ -49,7 +51,6 @@ spec:
                 labels:
                   operators.coreos.com/amq-streams.openshift-operators: ""
                 name: amq-streams
-                namespace: openshift-operators
               spec:
                 channel: stable
                 installPlanApproval: Manual
