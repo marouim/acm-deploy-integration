@@ -20,9 +20,6 @@ spec:
       spec:
         remediationAction: inform
         severity: high
-        namespaceSelector:
-          include: 
-          - "integrations-*"
         object-templates:
 
           - complianceType: musthave
@@ -32,12 +29,13 @@ spec:
               kind: Subscription
               metadata:
                 labels:
-                  operators.coreos.com/red-hat-camel-k.openshift-operators: ""
-                name: red-hat-camel-k
+                  operators.coreos.com/camel-k.openshift-operators: ""
+                name: camel-k
+                namespace: openshift-operators
               spec:
-                channel: techpreview
-                installPlanApproval: Manual
-                name: red-hat-camel-k
-                source: redhat-operators
+                channel: stable-1.5
+                installPlanApproval: Automatic
+                name: camel-k
+                source: community-operators
                 sourceNamespace: openshift-marketplace
-                startingCSV: red-hat-camel-k-operator.v1.3.3
+                startingCSV: camel-k-operator.v1.5.0
