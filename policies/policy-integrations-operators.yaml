@@ -35,7 +35,7 @@ spec:
                 name: camel-k
               spec:
                 channel: stable-1.5
-                installPlanApproval: Manual
+                installPlanApproval: Automatic
                 name: camel-k
                 source: community-operators
                 sourceNamespace: openshift-marketplace
@@ -52,7 +52,7 @@ spec:
                 name: amq-streams
               spec:
                 channel: stable
-                installPlanApproval: Manual
+                installPlanApproval: Automatic
                 name: amq-streams
                 source: redhat-operators
                 sourceNamespace: openshift-marketplace
