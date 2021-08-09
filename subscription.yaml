@@ -6,8 +6,8 @@ metadata:
     apps.open-cluster-management.io/git-path: /policies
     apps.open-cluster-management.io/reconcile-rate: high
   name: deploy-integration-subscription
-  namespace: acm-channels
+  namespace: open-cluster-management
 spec:
-  channel: acm-channels/deploy-integration-channel
+  channel: open-cluster-management/deploy-integration-channel
   placement:
     local: true
