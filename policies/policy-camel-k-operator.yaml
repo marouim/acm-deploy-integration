@@ -7,7 +7,7 @@ metadata:
     policy.open-cluster-management.io/categories: Operators
     policy.open-cluster-management.io/controls: Standards applicatif
 spec:
-  remediationAction: enforce
+  remediationAction: inform
   disabled: false
   policy-templates:
 
