@@ -46,14 +46,10 @@ spec:
               apiVersion: operators.coreos.com/v1alpha1
               kind: Subscription
               metadata:
-                creationTimestamp: "2021-07-27T17:51:35Z"
-                generation: 1
                 labels:
                   operators.coreos.com/amq-streams.openshift-operators: ""
                 name: amq-streams
                 namespace: openshift-operators
-                resourceVersion: "75722266"
-                uid: 5d571c9e-157f-4932-8c65-f6fd7979af14
               spec:
                 channel: stable
                 installPlanApproval: Automatic
