@@ -29,7 +29,7 @@ spec:
               kind: Subscription
               metadata:
                 labels:
-                  operators.coreos.com/camel-k.integrations-dev: ""
+                  operators.coreos.com/camel-k.openshift-operators: ""
                 name: camel-k
                 namespace: openshift-operators
               spec:
