@@ -29,16 +29,16 @@ spec:
               kind: Subscription
               metadata:
                 labels:
-                  operators.coreos.com/camel-k.openshift-operators: ""
-                name: camel-k
+                  operators.coreos.com/serverless-operator.openshift-operators: ""
+                name: serverless-operator
                 namespace: openshift-operators
               spec:
-                channel: stable-1.5
+                channel: stable
                 installPlanApproval: Automatic
-                name: camel-k
-                source: community-operators
+                name: serverless-operator
+                source: redhat-operators
                 sourceNamespace: openshift-marketplace
-                startingCSV: camel-k-operator.v1.5.0
+                startingCSV: serverless-operator.v1.16.0
 
           - complianceType: musthave
             objectDefinition:
@@ -75,4 +75,3 @@ spec:
                 source: redhat-operators
                 sourceNamespace: openshift-marketplace
                 startingCSV: redhat-openshift-pipelines.v1.5.0
-                
