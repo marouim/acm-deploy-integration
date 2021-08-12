@@ -10,9 +10,91 @@ spec:
   remediationAction: enforce
   disabled: false
   policy-templates:
+  - objectDefinition:
+      # Install Camel-K operator
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: integrations-operatorgroup
+      spec:
+        remediationAction: inform
+        severity: high
+        object-templates:
+
+          - complianceType: musthave
+            objectDefinition:
+
+              apiVersion: operators.coreos.com/v1
+              kind: OperatorGroup
+              metadata:
+                annotations:
+                  olm.providedAPIs: Build.v1.camel.apache.org,CamelCatalog.v1.camel.apache.org,Integration.v1.camel.apache.org,IntegrationKit.v1.camel.apache.org,IntegrationPlatform.v1.camel.apache.org,Kafka.v1beta2.kafka.strimzi.io,KafkaBridge.v1beta2.kafka.strimzi.io,KafkaConnect.v1beta2.kafka.strimzi.io,KafkaConnectS2I.v1beta2.kafka.strimzi.io,KafkaConnector.v1beta2.kafka.strimzi.io,KafkaMirrorMaker.v1beta2.kafka.strimzi.io,KafkaMirrorMaker2.v1beta2.kafka.strimzi.io,KafkaRebalance.v1beta2.kafka.strimzi.io,KafkaTopic.v1beta2.kafka.strimzi.io,KafkaUser.v1beta2.kafka.strimzi.io,Kamelet.v1alpha1.camel.apache.org,KameletBinding.v1alpha1.camel.apache.org
+                name: integrations
+                namespace: integrations-dev
+              spec:
+                targetNamespaces:
+                - integrations-dev
+
+          - complianceType: musthave
+            objectDefinition:
+
+              apiVersion: operators.coreos.com/v1
+              kind: OperatorGroup
+              metadata:
+                annotations:
+                  olm.providedAPIs: Build.v1.camel.apache.org,CamelCatalog.v1.camel.apache.org,Integration.v1.camel.apache.org,IntegrationKit.v1.camel.apache.org,IntegrationPlatform.v1.camel.apache.org,Kafka.v1beta2.kafka.strimzi.io,KafkaBridge.v1beta2.kafka.strimzi.io,KafkaConnect.v1beta2.kafka.strimzi.io,KafkaConnectS2I.v1beta2.kafka.strimzi.io,KafkaConnector.v1beta2.kafka.strimzi.io,KafkaMirrorMaker.v1beta2.kafka.strimzi.io,KafkaMirrorMaker2.v1beta2.kafka.strimzi.io,KafkaRebalance.v1beta2.kafka.strimzi.io,KafkaTopic.v1beta2.kafka.strimzi.io,KafkaUser.v1beta2.kafka.strimzi.io,Kamelet.v1alpha1.camel.apache.org,KameletBinding.v1alpha1.camel.apache.org
+                name: integrations
+                namespace: integrations-prod
+              spec:
+                targetNamespaces:
+                - integrations-prod
+
+          - complianceType: musthave
+            objectDefinition:
+
+              apiVersion: operators.coreos.com/v1
+              kind: OperatorGroup
+              metadata:
+                annotations:
+                  olm.providedAPIs: Build.v1.camel.apache.org,CamelCatalog.v1.camel.apache.org,Integration.v1.camel.apache.org,IntegrationKit.v1.camel.apache.org,IntegrationPlatform.v1.camel.apache.org,Kafka.v1beta2.kafka.strimzi.io,KafkaBridge.v1beta2.kafka.strimzi.io,KafkaConnect.v1beta2.kafka.strimzi.io,KafkaConnectS2I.v1beta2.kafka.strimzi.io,KafkaConnector.v1beta2.kafka.strimzi.io,KafkaMirrorMaker.v1beta2.kafka.strimzi.io,KafkaMirrorMaker2.v1beta2.kafka.strimzi.io,KafkaRebalance.v1beta2.kafka.strimzi.io,KafkaTopic.v1beta2.kafka.strimzi.io,KafkaUser.v1beta2.kafka.strimzi.io,Kamelet.v1alpha1.camel.apache.org,KameletBinding.v1alpha1.camel.apache.org
+                name: integrations
+                namespace: integrations-preprod
+              spec:
+                targetNamespaces:
+                - integrations-preprod
 
   - objectDefinition:
       # Install Camel-K operator
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: integrations-camel-k-operator
+      spec:
+        namespaceSelector:
+          include: 
+          - "integrations-dev"
+          - "integrations-preprod"
+          - "integrations-prod"
+        remediationAction: inform
+        severity: high
+        object-templates:
+
+          - complianceType: musthave
+            objectDefinition:
+
+              apiVersion: operators.coreos.com/v1alpha1
+              kind: Subscription
+              metadata:
+                name: camel-k
+              spec:
+                channel: stable-1.5
+                installPlanApproval: Automatic
+                name: camel-k
+                source: community-operators
+                sourceNamespace: openshift-marketplace
+                startingCSV: camel-k-operator.v1.5.0
+
+  - objectDefinition:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
